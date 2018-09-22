@@ -123,3 +123,10 @@ function save_details(){
 }
 
 add_action('save_post', 'save_details');
+
+function GetMetaData($nId, $strTag) {
+    foreach (wp_get_post_terms($nId, $strTag, array("fields" => "all")) as $arrPostTax){
+        $arr[] = $arrPostTax->name;
+    }
+    return implode(", ", $arr);
+}

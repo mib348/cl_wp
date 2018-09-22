@@ -83,3 +83,43 @@ function awesome_custom_taxonomies() {
     
 }
 add_action( 'init' , 'awesome_custom_taxonomies' );
+
+
+function admin_init(){
+    add_meta_box("ticket_price", "Ticket Price", "ticket_price", "films", "normal", "low");
+    add_meta_box("release_date", "Release Date", "release_date", "films", "normal", "low");
+}
+
+function ticket_price() {
+    global $post;
+    $custom = get_post_custom($post->ID);
+    $strTicketPrice = $custom["strTicketPrice"][0];
+    ?>
+  <p>
+  	<label>Ticket Price:</label><br />
+  	<input type="text" name="strTicketPrice" value="<?php echo $strTicketPrice; ?>" class="form-control"  style="width:100%;">
+  </p>
+  <?php
+}
+function release_date() {
+    global $post;
+    $custom = get_post_custom($post->ID);
+    $strReleaseDate = $custom["strReleaseDate"][0];
+    ?>
+  <p>
+  	<label>Ticket Price:</label><br />
+  	<input type="text" name="strReleaseDate" value="<?php echo $strReleaseDate; ?>" class="form-control"  style="width:100%;">
+  </p>
+  <?php
+}
+
+add_action("admin_init", "admin_init");
+
+function save_details(){
+    global $post;
+    
+    update_post_meta($post->ID, "strTicketPrice", $_POST["strTicketPrice"]);
+    update_post_meta($post->ID, "strReleaseDate", $_POST["strReleaseDate"]);
+}
+
+add_action('save_post', 'save_details');

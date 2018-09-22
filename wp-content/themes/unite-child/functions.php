@@ -107,7 +107,7 @@ function release_date() {
     $strReleaseDate = $custom["strReleaseDate"][0];
     ?>
   <p>
-  	<label>Ticket Price:</label><br />
+  	<label>Release Date:</label><br />
   	<input type="text" name="strReleaseDate" value="<?php echo $strReleaseDate; ?>" class="form-control"  style="width:100%;">
   </p>
   <?php

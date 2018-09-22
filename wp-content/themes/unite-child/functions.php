@@ -13,3 +13,22 @@ endif;
 add_action( 'wp_enqueue_scripts', 'chld_thm_cfg_parent_css', 10 );
 
 // END ENQUEUE PARENT ACTION
+
+// Register Custom Post Type
+function create_posttype() {
+    
+    register_post_type( 'films',
+        // CPT Options
+        array(
+            'labels' => array(
+                'name' => __( 'Films' ),
+                'singular_name' => __( 'Film' )
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'rewrite' => array('slug' => 'films'),
+        )
+        );
+}
+// Hooking up our function to theme setup
+add_action( 'init', 'create_posttype' );

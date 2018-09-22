@@ -130,3 +130,20 @@ function GetMetaData($nId, $strTag) {
     }
     return implode(", ", $arr);
 }
+
+function GetLatestFilms(){
+    ?>
+    <h3 class="widget-title">Latest Films</h3>
+    <ul>
+    <?php
+    foreach( wp_get_recent_posts(array( 'post_type'=>'films','numberposts' => '5')) as $recent ){
+    ?>
+    	<li><div class="flipthis-wrapper"><a href="<?php get_permalink($recent["ID"]) ?>"><?php echo $recent["post_title"]; ?></a></div></li>
+    <?php 
+    }
+    ?>
+    </ul>
+    <?php 
+}
+
+add_shortcode("Latest-Films", 'GetLatestFilms');

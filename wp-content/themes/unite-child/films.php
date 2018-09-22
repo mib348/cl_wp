@@ -5,7 +5,7 @@
 		<main id="main" class="site-main" role="main">
 
         <?php
-            $args = array( 'post_type' => 'films', 'posts_per_page' => 10 );
+            $args = array( 'post_type' => 'films');
             $loop = new WP_Query( $args );
             while ( $loop->have_posts() ) : $loop->the_post();
         ?>
